@@ -309,18 +309,3 @@ This demonstrated how a DevOps workflow can deploy existing application source c
 - Application startup and verification
 - Troubleshooting deployment issues
 
-## Project Status
-
-**Completed — Initial Deployment**
-
-The Java application was successfully built, transferred, executed, and verified on a DigitalOcean Ubuntu Droplet.
-
-Potential future enhancements include deployment scripting, systemd service management, HTTPS, and automated application delivery.
-
-## Project Context
-
-Independent hands-on implementation of cloud infrastructure and application deployment fundamentals, undertaken as part of structured DevOps engineering training.
-
-**Original application source:** [Java-React Example — Original Repository](PASTE-ORIGINAL-GITHUB-REPOSITORY-URL-HERE)
-
-The original application was used as the deployment workload. The work documented in this repository focuses on cloud infrastructure configuration, Linux administration, application deployment, verification, and troubleshooting.
