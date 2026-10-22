@@ -86,11 +86,10 @@ The build completed successfully, generating the application artifact in the `bu
 
 **Screenshot to use:** Page 1 of `Dev Proj Nptes.docx`, the **lower IntelliJ screenshot** showing the Gradle terminal with `BUILD SUCCESSFUL` and the generated JAR visible in the project explorer.
 
-**Save as:** `evidence/01-gradle-build.png`
-
 ![Successful Gradle build in IntelliJ IDEA](evidence/01-gradle-build.png)
 
 **Outcome:** The application was successfully built and packaged into a deployable Java artifact.
+
 
 ### 2. Provision the DigitalOcean Droplet
 
@@ -122,6 +121,7 @@ A cloud firewall was also configured, initially permitting SSH traffic over TCP 
 
 **Outcome:** An Ubuntu cloud server was provisioned with SSH key-based remote access.
 
+
 ### 3. Create and Configure a Dedicated Linux User
 
 After connecting to the Droplet, a separate Linux user was created for application-related operations rather than routinely using the root account.
@@ -146,11 +146,10 @@ These permissions ensure that SSH authentication files are not unnecessarily acc
 
 **Screenshot to use:** Page 2 of `Dev Proj Nptes.docx`, the **large lower terminal screenshot** showing the new user's `.ssh` directory, `authorized_keys`, `chown`, `chmod 700`, `chmod 600`, and `ls -al` verification.
 
-**Save as:** `evidence/02-linux-user-ssh.png`
-
 ![Linux user SSH key configuration and file permissions](evidence/02-linux-user-ssh.png)
 
 **Outcome:** A dedicated Linux account was configured with SSH authentication and appropriate filesystem permissions.
+
 
 ### 4. Install the Java Runtime
 
@@ -168,6 +167,7 @@ The installation was subsequently completed using the root account.
 
 **Outcome:** The required Java runtime was installed on the Droplet.
 
+
 ### 5. Transfer the Application Artifact to the Server
 
 Once the Java application was built locally and the server environment was ready, the generated JAR artifact was transferred to the Droplet using SCP.
@@ -183,6 +183,7 @@ The file was transferred into the dedicated Linux user's home directory.
 The successful transfer was confirmed before executing the application.
 
 **Outcome:** The deployable Java artifact was successfully transferred from the local development environment to the remote Ubuntu server.
+
 
 ### 6. Start the Java Application
 
@@ -200,11 +201,10 @@ The embedded Tomcat server started and listened for HTTP requests on port `7071`
 
 **Screenshot to use:** Page 3 of `Dev Proj Nptes.docx`, the **large lower terminal screenshot** showing the `java -jar` command, Spring Boot banner, application startup logs, and Tomcat listening on port `7071`.
 
-**Save as:** `evidence/03-application-startup.png`
-
 ![Spring Boot application running on the DigitalOcean Droplet](evidence/03-application-startup.png)
 
 **Outcome:** The Java application was successfully executed on the remote Linux server.
+
 
 ### 7. Configure Firewall Access and Verify Deployment
 
@@ -219,8 +219,6 @@ The Countries application loaded successfully, demonstrating that the Java runti
 **IMAGE 4 — APPLICATION ACCESSIBLE IN BROWSER**
 
 **Screenshot to use:** Page 4 of `Dev Proj Nptes.docx`, the **browser screenshot** displaying the running Countries application and its country list.
-
-**Save as:** `evidence/04-browser-verification.png`
 
 ![Successfully deployed Countries application accessible in a browser](evidence/04-browser-verification.png)
 
