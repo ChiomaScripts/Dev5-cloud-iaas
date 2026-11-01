@@ -84,8 +84,6 @@ The build completed successfully, generating the application artifact in the `bu
 
 **IMAGE 1 — LOCAL GRADLE BUILD**
 
-**Screenshot to use:** Page 1 of `Dev Proj Nptes.docx`, the **lower IntelliJ screenshot** showing the Gradle terminal with `BUILD SUCCESSFUL` and the generated JAR visible in the project explorer.
-
 ![Successful Gradle build in IntelliJ IDEA](evidence/01-gradle-build.png)
 
 **Outcome:** The application was successfully built and packaged into a deployable Java artifact.
@@ -144,8 +142,6 @@ These permissions ensure that SSH authentication files are not unnecessarily acc
 
 **IMAGE 2 — LINUX USER AND SSH CONFIGURATION**
 
-**Screenshot to use:** Page 2 of `Dev Proj Nptes.docx`, the **large lower terminal screenshot** showing the new user's `.ssh` directory, `authorized_keys`, `chown`, `chmod 700`, `chmod 600`, and `ls -al` verification.
-
 ![Linux user SSH key configuration and file permissions](evidence/02-linux-user-ssh.png)
 
 **Outcome:** A dedicated Linux account was configured with SSH authentication and appropriate filesystem permissions.
@@ -199,8 +195,6 @@ The embedded Tomcat server started and listened for HTTP requests on port `7071`
 
 **IMAGE 3 — SPRING BOOT APPLICATION STARTUP**
 
-**Screenshot to use:** Page 3 of `Dev Proj Nptes.docx`, the **large lower terminal screenshot** showing the `java -jar` command, Spring Boot banner, application startup logs, and Tomcat listening on port `7071`.
-
 ![Spring Boot application running on the DigitalOcean Droplet](evidence/03-application-startup.png)
 
 **Outcome:** The Java application was successfully executed on the remote Linux server.
@@ -217,8 +211,6 @@ The application was then accessed through a web browser using the Droplet's publ
 The Countries application loaded successfully, demonstrating that the Java runtime, application process, server networking, and firewall configuration were functioning together.
 
 **IMAGE 4 — APPLICATION ACCESSIBLE IN BROWSER**
-
-**Screenshot to use:** Page 4 of `Dev Proj Nptes.docx`, the **browser screenshot** displaying the running Countries application and its country list.
 
 ![Successfully deployed Countries application accessible in a browser](evidence/04-browser-verification.png)
 
