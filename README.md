@@ -39,30 +39,9 @@ The implementation covered the full deployment lifecycle: building the applicati
 
 ## Deployment Workflow
 
-```text
-Java Application Source
-          |
-          v
-Local Gradle Build (IntelliJ IDEA)
-          |
-          v
-Executable JAR Artifact
-          |
-          v
-SCP Transfer
-          |
-          v
-DigitalOcean Ubuntu Droplet
-          |
-          v
-Java Runtime / Spring Boot
-          |
-          v
-Application Listening on Port 7071
-          |
-          v
-Browser Verification
-```
+![Cloud Infrastructure and Java Application Deployment Architecture](architecture/deployment-workflow.png)
+
+The application was built locally using Gradle, transferred securely to the DigitalOcean Ubuntu Droplet using SCP, and executed using the Java runtime. SSH was used for remote server administration, while Linux user permissions and cloud firewall rules were configured to support deployment and external access. The running application was verified through a browser on port `7071`.
 
 The Ubuntu server was provisioned and configured with SSH access, a dedicated Linux user, and the required Java runtime before application execution.
 
