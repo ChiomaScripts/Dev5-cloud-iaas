@@ -2,6 +2,8 @@
 
 Provisioning, configuring, and deploying a Java application on a Linux-based cloud server using DigitalOcean.
 
+---
+
 ## Overview
 
 This project demonstrates the fundamentals of Infrastructure as a Service (IaaS), focusing on cloud server provisioning, Linux system administration, secure remote access, and application deployment.
@@ -9,6 +11,8 @@ This project demonstrates the fundamentals of Infrastructure as a Service (IaaS)
 The objective was to establish a functional cloud environment capable of hosting and running a Java application built with Gradle.
 
 The implementation covered the full deployment lifecycle: building the application locally, provisioning an Ubuntu server, configuring SSH authentication and Linux user permissions, transferring the application artifact, starting the application, and verifying external accessibility.
+
+---
 
 ## Tech Stack
 
@@ -24,6 +28,8 @@ The implementation covered the full deployment lifecycle: building the applicati
 | DigitalOcean Cloud Firewall | Inbound network access control |
 | IntelliJ IDEA | Local development and application build environment |
 
+---
+
 ## Implementation Scope
 
 - Provisioned and configured an Ubuntu Droplet on DigitalOcean.
@@ -37,19 +43,25 @@ The implementation covered the full deployment lifecycle: building the applicati
 - Configured cloud firewall rules to allow application traffic.
 - Verified successful deployment through application startup logs and browser access.
 
+---
+
 ## Deployment Workflow
 
 ![Cloud Infrastructure and Java Application Deployment Architecture](architecture/deployment-workflow.png)
 
-The application was built locally using Gradle, transferred securely to the DigitalOcean Ubuntu Droplet using SCP, and executed using the Java runtime. SSH was used for remote server administration, while Linux user permissions and cloud firewall rules were configured to support deployment and external access. The running application was verified through a browser on port `7071`.
+The application was built locally using Gradle, transferred securely to the DigitalOcean Ubuntu Droplet using SCP, and executed using the Java runtime.
+
+SSH was used for remote server administration, while Linux user permissions and cloud firewall rules were configured to support deployment and external access.
 
 The Ubuntu server was provisioned and configured with SSH access, a dedicated Linux user, and the required Java runtime before application execution.
+
+The running application was verified through a browser on port `7071`.
 
 ---
 
 ## Implementation Walkthrough
 
-### 1. Clone and Build the Java Application
+### 01 — Clone and Build the Java Application
 
 The Java-React example application was cloned from its existing Git repository into IntelliJ IDEA.
 
@@ -61,14 +73,15 @@ gradle build
 
 The build completed successfully, generating the application artifact in the `build/libs/` directory.
 
-
+#### Deployment Evidence — Gradle Build
 
 ![Successful Gradle build in IntelliJ IDEA](evidence/01-gradle-build.png)
 
 **Outcome:** The application was successfully built and packaged into a deployable Java artifact.
 
+---
 
-### 2. Provision the DigitalOcean Droplet
+### 02 — Provision the DigitalOcean Droplet
 
 An Ubuntu 24.04 LTS Droplet was created on DigitalOcean using the Basic shared-CPU configuration.
 
@@ -98,8 +111,9 @@ A cloud firewall was also configured, initially permitting SSH traffic over TCP 
 
 **Outcome:** An Ubuntu cloud server was provisioned with SSH key-based remote access.
 
+---
 
-### 3. Create and Configure a Dedicated Linux User
+### 03 — Create and Configure a Dedicated Linux User
 
 After connecting to the Droplet, a separate Linux user was created for application-related operations rather than routinely using the root account.
 
@@ -117,16 +131,19 @@ chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 ```
 
-These permissions ensure that SSH authentication files are not unnecessarily accessible to other users. The files must also be owned by the appropriate Linux account.
+These permissions ensure that SSH authentication files are not unnecessarily accessible to other users.
 
+The files must also be owned by the appropriate Linux account.
 
+#### Deployment Evidence — Linux User and SSH Configuration
 
 ![Linux user SSH key configuration and file permissions](evidence/02-linux-user-ssh.png)
 
 **Outcome:** A dedicated Linux account was configured with SSH authentication and appropriate filesystem permissions.
 
+---
 
-### 4. Install the Java Runtime
+### 04 — Install the Java Runtime
 
 The Ubuntu server required a Java runtime to execute the compiled application artifact.
 
@@ -142,8 +159,9 @@ The installation was subsequently completed using the root account.
 
 **Outcome:** The required Java runtime was installed on the Droplet.
 
+---
 
-### 5. Transfer the Application Artifact to the Server
+### 05 — Transfer the Application Artifact to the Server
 
 Once the Java application was built locally and the server environment was ready, the generated JAR artifact was transferred to the Droplet using SCP.
 
@@ -159,8 +177,9 @@ The successful transfer was confirmed before executing the application.
 
 **Outcome:** The deployable Java artifact was successfully transferred from the local development environment to the remote Ubuntu server.
 
+---
 
-### 6. Start the Java Application
+### 06 — Start the Java Application
 
 The application was started on the Droplet using the Java runtime:
 
@@ -172,14 +191,15 @@ The Spring Boot startup logs confirmed successful application initialisation.
 
 The embedded Tomcat server started and listened for HTTP requests on port `7071`.
 
-
+#### Deployment Evidence — Application Startup
 
 ![Spring Boot application running on the DigitalOcean Droplet](evidence/03-application-startup.png)
 
 **Outcome:** The Java application was successfully executed on the remote Linux server.
 
+---
 
-### 7. Configure Firewall Access and Verify Deployment
+### 07 — Configure Firewall Access and Verify Deployment
 
 Although the application was running on the Droplet, external connectivity required the application's listening port to be permitted through the cloud firewall.
 
@@ -189,7 +209,7 @@ The application was then accessed through a web browser using the Droplet's publ
 
 The Countries application loaded successfully, demonstrating that the Java runtime, application process, server networking, and firewall configuration were functioning together.
 
-
+#### Deployment Evidence — Browser Verification
 
 ![Successfully deployed Countries application accessible in a browser](evidence/04-browser-verification.png)
 
@@ -201,7 +221,7 @@ The Countries application loaded successfully, demonstrating that the Java runti
 
 ## Troubleshooting & Lessons Learned
 
-### 1. Linux User Privileges and Sudo Access
+### 01 — Linux User Privileges and Sudo Access
 
 **Issue:** An attempt to install Java from the newly created Linux user account failed because the account lacked administrative privileges.
 
@@ -217,9 +237,13 @@ On Ubuntu, an administrator can add a user to the sudo group using:
 sudo usermod -aG sudo username
 ```
 
-However, application users do not necessarily require sudo privileges to execute Java applications. Separating system administration from application execution supports the principle of least privilege.
+However, application users do not necessarily require sudo privileges to execute Java applications.
 
-### 2. SSH Authentication and File Permissions
+Separating system administration from application execution supports the principle of least privilege.
+
+---
+
+### 02 — SSH Authentication and File Permissions
 
 **Challenge:** Creating a Linux user alone was not sufficient to configure SSH public-key authentication for that account.
 
@@ -236,7 +260,9 @@ chmod 600 ~/.ssh/authorized_keys
 
 A separate SSH key pair is not necessarily required for every Linux user.
 
-### 3. Application Port and Cloud Firewall Configuration
+---
+
+### 03 — Application Port and Cloud Firewall Configuration
 
 **Challenge:** Starting the application on the server did not automatically make it accessible externally.
 
@@ -244,7 +270,9 @@ A separate SSH key pair is not necessarily required for every Linux user.
 
 **Key learning:** Application availability depends on both the application listening on the expected interface and port, and the network controls permitting the required traffic.
 
-### 4. Understanding the Build and Deployment Lifecycle
+---
+
+### 04 — Understanding the Build and Deployment Lifecycle
 
 **Key learning:** Building an application and deploying it are separate stages.
 
@@ -261,20 +289,22 @@ This demonstrated how a DevOps workflow can deploy existing application source c
 ## Technical Focus
 
 ### Cloud Infrastructure
+
 - Virtual server provisioning and configuration
 - Cloud firewall rules and application connectivity
 - Infrastructure as a Service fundamentals
 
 ### Linux Administration
+
 - SSH key-based authentication
 - Linux user and group management
 - File ownership and permissions
 - Administrative privilege separation
 
 ### Application Deployment
+
 - Gradle build and packaging
 - JAR artifact transfer using SCP
 - Java runtime installation
 - Application startup and verification
 - Troubleshooting deployment issues
-
