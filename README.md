@@ -82,7 +82,7 @@ gradle build
 
 The build completed successfully, generating the application artifact in the `build/libs/` directory.
 
-**IMAGE 1 — LOCAL GRADLE BUILD**
+
 
 ![Successful Gradle build in IntelliJ IDEA](evidence/01-gradle-build.png)
 
@@ -140,7 +140,7 @@ chmod 600 ~/.ssh/authorized_keys
 
 These permissions ensure that SSH authentication files are not unnecessarily accessible to other users. The files must also be owned by the appropriate Linux account.
 
-**IMAGE 2 — LINUX USER AND SSH CONFIGURATION**
+
 
 ![Linux user SSH key configuration and file permissions](evidence/02-linux-user-ssh.png)
 
@@ -193,7 +193,7 @@ The Spring Boot startup logs confirmed successful application initialisation.
 
 The embedded Tomcat server started and listened for HTTP requests on port `7071`.
 
-**IMAGE 3 — SPRING BOOT APPLICATION STARTUP**
+
 
 ![Spring Boot application running on the DigitalOcean Droplet](evidence/03-application-startup.png)
 
@@ -210,7 +210,7 @@ The application was then accessed through a web browser using the Droplet's publ
 
 The Countries application loaded successfully, demonstrating that the Java runtime, application process, server networking, and firewall configuration were functioning together.
 
-**IMAGE 4 — APPLICATION ACCESSIBLE IN BROWSER**
+
 
 ![Successfully deployed Countries application accessible in a browser](evidence/04-browser-verification.png)
 
